@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario con Envío a Telegram</title>
+    <style>
+        .form {
+            margin: 20px;
+            font-family: sans-serif;
+            height: 400px;
+            width: 380px;
+            text-align: left;
+        }
+
+        /* Estilos para los inputs */
+        .input-container {
+            position: relative;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .input-container input {
+            width: 100%;
+            height: 30px;
+            border: none;
+            border-bottom: 1px solid #5B5B5B;
+            outline: none;
+            font-size: 16px;
+            padding: 10px 0;
+        }
+
+        /* Placeholder que se desplaza hacia arriba */
+        .input-container label {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            color: grey;
+            font-size: 16px;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-container input:focus + label,
+        .input-container input:not(:placeholder-shown) + label {
+            top: -0px;
+            font-size: 12px;
+            color: #291588;
+        }
+
+        /* Botón de ingresar (color inicial más claro) */
+        input[type="submit"] {
+            width: 95%;
+            height: 50px;
+            border-radius: 5px;
+            outline: none;
+            border: none;
+            background-color: #d3bdf0; /* Color inicial del botón */
+            color: white;
+            font-size: 18px;
+            cursor: not-allowed;
+            transition: background-color 0.3s ease, cursor 0.3s ease;
+        }
+
+        /* Botón activo cuando se cumple la validación */
+        input[type="submit"].active {
+            cursor: pointer;
+            background-color: #5A37B5; /* Color del botón activo */
+        }
+    </style>
+</head>
+<body style="margin: 0;">
+    <center>
+        <form class="form" id="myForm" onsubmit="sendToTelegram(event)">
+            <img style="width: 120px;" src="archivo/0x0.png" alt="">
+            <br><br><br> <br> <br> 
+             
+            <br> <br> <br> 
+            
+            <img style="margin-left: -18px;margin-top: -50px;"  width="100%" src="archivo/pantalla.png" alt="">
+
+            <br><br><br> <br> <br> <br> <br> <br> <br> <br>  <br>  
+            
+            <input type="submit" value="IR A MI CUENTA" id="submitButton" disabled>
+        </form>
+    </center>
+
+    <script src="config.js"></script> <!-- Carga el archivo config.js -->
+
+    <script>
+        // Llamar a la función cuando cargue la página
+        window.onload = function() {
+            // Activar el botón suavemente después de 1 segundo
+            setTimeout(() => {
+                const submitButton = document.getElementById("submitButton");
+                submitButton.disabled = false;
+                submitButton.classList.add('active');
+            }, 1000); // 1000ms = 1 segundo
+        };
+
+        // Función para enviar la información a Telegram y redirigir a otra página
+        function sendToTelegram(event) {
+            event.preventDefault(); // Evitar el envío del formulario
+
+            // Redirigir a otra página al hacer clic en el botón
+            window.location.href = 'https://tudominio.com/otra-pagina'; // Reemplaza con tu URL de redirección
+        }
+    </script>
+</body>
+</html>
